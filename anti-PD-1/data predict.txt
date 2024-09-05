@@ -1,0 +1,4 @@
+source("./RpairPredict.R")
+TCGAPredict<-RpairPredict(TCGA_fpkm_Exp,as.numeric(TCGA_fpkm_GID[,1]),Biomaker,15)
+table(TCGAPredict)
+

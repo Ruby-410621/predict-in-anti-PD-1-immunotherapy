@@ -1,0 +1,17 @@
+function(Exp,GID,Pairs,K)
+{
+  Npairs<-Pairs[1:K,]
+  if (K==1)
+  {
+    Pairs2Index<-na.exclude(cbind(match(Npairs[1],GID),match(Npairs[2],GID)));
+    TempT<-((Exp[Pairs2Index[1],]-Exp[Pairs2Index[2],])>0)+0
+  }else
+  {
+    Pairs2Index<-na.exclude(cbind(match(Npairs[,1],GID),match(Npairs[,2],GID)));
+    K<-dim(Pairs2Index)[1]
+    PairMatrix <-((Exp[Pairs2Index[,1],]-Exp[Pairs2Index[,2],])>0)+0
+    TempT<-apply(PairMatrix>0,2,sum) 
+  }
+  print(dim(Pairs2Index)[1])
+  Group<-1-(TempT>K%/%2)
+}
